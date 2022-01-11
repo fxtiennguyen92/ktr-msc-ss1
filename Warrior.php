@@ -18,10 +18,29 @@ class Warrior extends Character {
         echo($this->getName().":  My name will go down in history !<br>");
     }
     
-    public function attackWithWeapon($weapon) {
+    public function attack($weapon = null) {
         if (in_array($weapon, $this->listWeapon)) {
             echo($this->getName().": Rrrrrrrrr ....<br>");
             echo($this->getName().": I'll crush you with my ".$weapon." !<br>");
         }
+    }
+    
+    /**
+     * Movable methods
+     */
+    public function moveRight() {
+        echo($this->getName().": moves right like a bad boy.<br>");
+    }
+    
+    public function moveLeft() {
+        echo($this->getName().": moves left like a bad boy.<br>");
+    }
+    
+    public function moveBack() {
+        echo($this->getName().": moves back like a bad boy.<br>");
+    }
+    
+    public function moveForward() {
+        echo($this->getName().": moves forward like a bad boy.<br>");
     }
 }

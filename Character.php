@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-abstract class Character 
+abstract class Character implements Movable 
 {
     public $name;
     public $life;
@@ -23,16 +23,34 @@ abstract class Character
         $this->introduceSelf();
     }
     
-    public function attack($weapon) {
-        if ($weapon) {
-            $this->attackWithWeapon($weapon);
-        } else {
-            echo($this->name.": Rrrrrrrrr ....<br>");
-        }
+    public function unsheathe() {
+        echo($this->getName().": unsheathes his weapon .<br>");
+    }
+    
+    public function attack($weapon = null) {
+        echo($this->getName().": Rrrrrrrrr ....<br>");
     }
     
     abstract public function introduceSelf();
-    abstract public function attackWithWeapon($weapon);
+    
+    /**
+     * Movable methods
+     */
+    public function moveRight() {
+        echo($this->getName().": moves right<br>");
+    }
+
+    public function moveLeft() {
+        echo($this->getName().": moves left<br>");
+    }
+
+    public function moveBack() {
+        echo($this->getName().": moves back<br>");
+    }
+
+    public function moveForward() {
+        echo($this->getName().": moves forward<br>");
+    }
     
     /** 
      * Getters and Setters

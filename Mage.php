@@ -18,10 +18,29 @@ class Mage extends Character {
         echo($this->getName().":   May the gods be with me .<br>");
     }
     
-    public function attackWithWeapon($weapon) {
+    public function attack($weapon = null) {
         if (in_array($weapon, $this->listWeapon)) {
             echo($this->name.": Rrrrrrrrr ....<br>");
             echo($this->name.": Feel the power of my ".$weapon." !<br>");
         }
+    }
+    
+    /**
+     * Movable methods
+     */
+    public function moveRight() {
+        echo($this->getName().": moves right furtively.<br>");
+    }
+    
+    public function moveLeft() {
+        echo($this->getName().": moves left furtively.<br>");
+    }
+    
+    public function moveBack() {
+        echo($this->getName().": moves back furtively.<br>");
+    }
+    
+    public function moveForward() {
+        echo($this->getName().": moves forward furtively.<br>");
     }
 }
