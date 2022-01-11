@@ -2,6 +2,8 @@
 
 class Mage extends Character {
     const PRG_MAGE = 'Mage';
+    const EXCEPT_NOT_DEFINED = '0';
+    const EXCEPT_NOT_FIT = '1';
     
     private $listWeapon = ['magic', 'wand'];
     
@@ -18,12 +20,17 @@ class Mage extends Character {
     }
     
     public function attack($weapon = null) {
-        if (in_array($weapon, $this->listWeapon)) {
-            // Unsheathe and Attack
-            $this->unsheathe();
-            echo($this->name.": Rrrrrrrrr ....<br>");
-            echo($this->name.": Feel the power of my ".$weapon." !<br>");
+        if (is_null($weapon)) {
+            throw new WeaponException(self::EXCEPT_NOT_DEFINED, $this->getName(), $this->getRPGClass(), $weapon);
         }
+        if (!in_array($weapon, $this->listWeapon)) {
+            throw new WeaponException(self::EXCEPT_NOT_FIT, $this->getName(), $this->getRPGClass(), $weapon);
+        }
+        
+        // Unsheathe and Attack
+        $this->unsheathe();
+        echo($this->name.": Rrrrrrrrr ....<br>");
+        echo($this->name.": Feel the power of my ".$weapon." !<br>");
     }
     
     /**

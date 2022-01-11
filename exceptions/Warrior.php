@@ -1,6 +1,9 @@
 <?php
+
 class Warrior extends Character {
     const PRG_WARRIOR = 'Warrior';
+    const EXCEPT_NOT_DEFINED = '0';
+    const EXCEPT_NOT_FIT = '1';
     
     private $listWeapon = ['hammer', 'sword'];
     
@@ -17,12 +20,18 @@ class Warrior extends Character {
     }
     
     public function attack($weapon = null) {
-        if (in_array($weapon, $this->listWeapon)) {
-            // Unsheathe and Attack
-            $this->unsheathe();
-            echo($this->getName().": Rrrrrrrrr ....<br>");
-            echo($this->getName().": I'll crush you with my ".$weapon." !<br>");
+        if (is_null($weapon)) {
+            throw new WeaponException(self::EXCEPT_NOT_DEFINED, $this->getName(), $this->getRPGClass(), $weapon);
         }
+        
+        if (!in_array($weapon, $this->listWeapon)) {
+            throw new WeaponException(self::EXCEPT_NOT_FIT, $this->getName(), $this->getRPGClass(), $weapon);
+        }
+        
+        // Unsheathe and Attack
+        $this->unsheathe();
+        echo($this->getName().": Rrrrrrrrr ....<br>");
+        echo($this->getName().": I'll crush you with my ".$weapon." !<br>");
     }
     
     /**

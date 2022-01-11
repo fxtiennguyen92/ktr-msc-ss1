@@ -1,6 +1,6 @@
 <?php
 
-abstract class Character implements Movable 
+abstract class Character
 {
     public $name;
     public $life;
@@ -38,6 +38,18 @@ abstract class Character implements Movable
     }
     
     /**
+     * Attack - catch the exception and print the message
+     * @param string $weapon
+     */
+    public function tryToAttack($weapon) {
+        try {
+            $this->attack($weapon);
+        } catch (WeaponException $e) {
+            echo $e->getMessage();
+        }
+    }
+    
+    /**
      * Inforduct self after initialization
      */
     abstract public function introduceSelf();
@@ -48,20 +60,20 @@ abstract class Character implements Movable
     public function moveRight() {
         echo($this->getName().": moves right<br>");
     }
-
+    
     public function moveLeft() {
         echo($this->getName().": moves left<br>");
     }
-
+    
     public function moveBack() {
         echo($this->getName().": moves back<br>");
     }
-
+    
     public function moveForward() {
         echo($this->getName().": moves forward<br>");
     }
     
-    /** 
+    /**
      * Getters and Setters
      */
     public function getName() {
@@ -91,7 +103,7 @@ abstract class Character implements Movable
     public function setName($name) {
         $this->name = $name;
     }
-        
+    
     public function setLife($life) {
         $this->life = $life;
     }
